@@ -1,6 +1,12 @@
 # concurso-sadosky-clasif-img-satellite
 Participación del concurso de la Fundación Sadosky: Clasificación de cultivos utilizando imágenes satelitales
 
+> repo del concurso
+https://github.com/DesafiosAgTech/DesafioAgTech2020
+
+> descarga de imagenes
+https://registry.opendata.aws/?search=tags:gis,earth%20observation,events,mapping,meteorological,environmental,transportation
+
 # Página de instalación de pytorch
 https://pytorch.org/get-started/locally/
 
