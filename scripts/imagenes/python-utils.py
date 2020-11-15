@@ -1,5 +1,7 @@
 import cv2 as cv
 import numpy as np
+import math
+from matplotlib import pyplot as plt
 
 ######################################################################################
 #                                                                                    #
@@ -7,38 +9,7 @@ import numpy as np
 #                                                                                    #
 ######################################################################################
 
-#Unir imagenes en una sola
-#Orientacion horizontal(a lo ancho) axis=0, vertical(a lo largo) axis=1
-def joinImg(imgs, axis):
-    max_x = 0
-    max_y = 0
-    for i in imgs:
-        x=imgs[i].shape[0]
-        y=imgs[i].shape[1]
-        if(axis == 1):
-            max_y += y
-            if(max_x < x):
-                max_x = x
-        else:
-            max_x += x
-            if(max_y < y):
-                max_y = y
-    result = np.zeros((max_x, max_y, 3), dtype=imgs[i].dtype)
-    #print("result shape", result.shape)
-    x = 0
-    y = 0
-    for i in imgs:
-        dx = x + imgs[i].shape[0]
-        dy = y + imgs[i].shape[1]
-        
-        result[x:dx,y:dy,:] = imgs[i].copy()
 
-        if(axis == 0):
-            x = x + imgs[i].shape[0]
-        else:
-            y = y + imgs[i].shape[1]
-
-    return result
 
 #########################################################
 #                                                       #
@@ -183,13 +154,6 @@ def bounding_box(img, _color=(0,255,0)):
     return img_RGB, inicio, fin
 
 
-
-
-import numpy as np
-import math
-import cv2 as cv
-from TP1_utils import *
-from matplotlib import pyplot as plt
 
 ##########################################################
 #                                                        #
@@ -528,8 +492,6 @@ def HSItoBGR(img_hsi):
 
 
 
-import cv2 as cv
-import numpy as np
 
 ######################################################################################
 #                                                                                    #
