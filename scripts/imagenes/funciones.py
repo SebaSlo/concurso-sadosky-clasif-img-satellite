@@ -208,66 +208,6 @@ def eliminar_contiguos(lista, delFL=False):
         lista2.append(lista[-1])
     return sorted(list(set(lista2)))
 
-def ruidoSalPimienta(img, s_vs_p, cantidad):
-    # Parametros de entrada
-    # img: imagen
-    # s_vs_p: relacion de sal y pimienta (0 a 1)
-    # cantidad: cantidad de ruido
-
-    # Funcion para ensuciar una imagen con ruido sal y pimienta
-    (alto, ancho) = img.shape
-    # generar ruido tipo sal
-    n_sal = np.ceil(cantidad * img.size * s_vs_p)
-    coords = [np.random.randint(0, i - 1, int(n_sal)) for i in img.shape]
-    img[coords] = 255
-    # generar ruido tipo pimienta
-    n_pim = np.ceil(cantidad * img.size * (1.0 - s_vs_p))
-    coords = [np.random.randint(0, i - 1, int(n_pim)) for i in img.shape]
-    img[coords] = 0
-    return img
-
-def ruidoGaussiano(img, mu, sigma):
-    # img: imagen a la cual se le agrega ruido
-    # mu: media
-    # sigma: desviacion estandar
-    [alto, ancho] = img.shape
-    img = img.astype(np.float16) / 255
-    ruido = np.random.normal(mu, sigma, [alto, ancho]).astype('f')
-    img_r = img + ruido
-    img_r = 255 * img_r / img_r.max()
-    return img_r
-
-def ruidoRayleigh(img, a):
-    (alto, ancho) = img.shape
-    img = img.astype(np.float16) / 255
-    ruido = np.random.rayleigh(a, [alto, ancho]).astype('f')
-    img_r = img + ruido
-    img_r = 255 * img_r / img_r.max()
-    return img_r
-
-def ruidoUniforme(img, a, b):
-    (alto, ancho) = img.shape
-    img = img.astype(np.float16) / 255
-    ruido = np.random.uniform(a, b, [alto, ancho]).astype('f')
-    img_r = img + ruido
-    img_r = 255 * img_r / img_r.max()
-    return img_r
-
-def ruidoExponencial(img, a):
-    (alto, ancho) = img.shape
-    img = img.astype(np.float16) / 255
-    ruido = np.random.exponential(a, [alto, ancho]).astype('f')
-    img_r = img + ruido
-    img_r = 255 * img_r / img_r.max()
-    return img_r
-
-def ruidoGamma(img, a, b):
-    (alto, ancho) = img.shape
-    img = img.astype(np.float16) / 255
-    ruido = np.random.gamma(a, b, [alto, ancho]).astype('f')
-    img_r = img + ruido
-    img_r = 255 * img_r / img_r.max()
-    return img_r
 
 def filtroMediaGeometrica(img, m, n):
     (s, t) = img.shape
