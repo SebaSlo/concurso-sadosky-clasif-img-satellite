@@ -6,7 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2 as cv
 import json
-from TP2_utils import *
+from python_utils import *
+from funciones import *
 
 from sentinelhub import MimeType, CRS, BBox, SentinelHubRequest, SentinelHubDownloadClient, \
     DataCollection, bbox_to_dimensions, DownloadRequest
@@ -78,12 +79,19 @@ print(f'Image type: {image.dtype}')
 # factor 1/255 to scale between 0-1
 # factor 3.5 to increase brightness
 #plot_image(image, factor=3.5/255, clip_range=(0,1))
-img = image.map(normalizar)
-#img = np.array(image, np.float32)
-#img = img*3.5
-#img[:,:,:] = min(img[:,:,:],255)
-#img = np.array(img, "uint8")
-cv.imshow("imagen", img)
-cv.waitKey(0)
-cv.destroyAllWindows()
+
+s = mapeo_ac(1.1,0)
+img = cv.LUT(image, s)
+img = img.astype("uint8")
+
+image = np.array(image[:,:,:]/255, np.float32)
+image[:,:,:] = image[:,:,:]*4 # se pasa de rango
+print("max-min", image[:,:,:].max(), image[:,:,:].min())
+print("max-min", img[:,:,:].max(), img[:,:,:].min())
+graficar(image, 0, image[:,:,:].max(), plt.cm.hot)
+graficar(img, 0, img[:,:,:].max(), plt.cm.hot, "LUT")
+plt.show()
+#cv.imshow("imagen", img)
+#cv.waitKey(0)
+#cv.destroyAllWindows()
 
