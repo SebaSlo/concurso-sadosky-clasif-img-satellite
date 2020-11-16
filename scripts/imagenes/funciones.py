@@ -178,7 +178,7 @@ def obtenerPosDesdeAltura(img,altura):
     return centros
 
 
-def graficar(img,maximo,minimo,mapa,titulo=''):
+def graficar(img, minimo = 0, maximo = 255, mapa = None, titulo=''):
     ventana = plt.figure()
     # ventana.canvas.set_window_title(titulo)
     plt.axis("off")

@@ -416,12 +416,6 @@ def histograma(img, title="Histograma"):
     plt.hist(img.flatten(), 255)
     plt.title(title)
 
-def graficar(img,maximo,minimo,mapa,titulo=''):
-    ventana = plt.figure()
-    # ventana.canvas.set_window_title(titulo)
-    plt.axis("off")
-    plt.imshow(img, vmax=maximo, vmin=minimo, cmap=mapa)
-    plt.title(titulo)
 
 
 #####################################################
